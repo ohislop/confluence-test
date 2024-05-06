@@ -1,44 +1,760 @@
-<!DOCTYPE html>
-<html lang="en">
+# Introduction
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
+<div style="display: flex;">
+  <div style="flex: 3;padding-right: 100px;">
+    <h2>Purpose</h2>
+    <p>The purpose of this page is to document the security configuration items of a particular service offered by a Cloud Service Provider (CSP). It ensures that a particular cloud-service meets the necessary security requirements in order for safe use for a particular use-case. This document is to be used by Enterprise Security personnel to assist with performing security assurance of cloud-services and the development of Cloud Security Configuration Guides. The content will be guided by the requirements set out in the Architecture Security Requirements (ASR) document related to the same cloud service.</p>
+  </div>
+  <div style="flex: 1; padding: 20px; border: 1px solid #ccc; margin-left: 20px;">
+    <div>
+      <p><strong>DynamoDB</strong></p>
+      <p><img src="https://dev.azure.com/dd-managed-services/3b965659-f42e-4640-b07e-c1c1718a5a62/_apis/git/repositories/3ee8fce2-adca-4d33-aa6f-81eb625e3cd0/items?path=/__build/assets/aws/dynamodb.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Your Image Description" width="300" style="display: block; margin-left: auto; margin-right: auto;"></p>
+    </div>
+    <table>
+      <tr>
+        <td style="background-color: #f2f2f2;"><strong>Cloud Provider</strong></td>
+        <td><img src="https://dev.azure.com/dd-managed-services/3b965659-f42e-4640-b07e-c1c1718a5a62/_apis/git/repositories/3ee8fce2-adca-4d33-aa6f-81eb625e3cd0/items?path=/__build/assets/AWS-icon-small.png&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=octetStream&api-version=5.0" alt="Your Image Description"></td>
+      </tr>
+      <tr>
+        <td style="background-color: #f2f2f2;"><strong>Service Name</strong></td>
+        <td>DynamoDB</td>
+      </tr>
+      <tr>
+        <td style="background-color: #f2f2f2;"><strong>Service Category</strong></td>
+        <td>Database</td>
+      </tr>
+      <tr>
+        <td style="background-color: #f2f2f2;"><strong>Baseline Status</strong></td>
+        <td>WIP</td>
+      </tr>
+      <tr>
+        <td style="background-color: #f2f2f2;"><strong>Last Reviewed</strong></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div style="display: flex;">
+  <div style="flex: 3;">
+    <h2>Audience</h2>
+    <p>This document was written for the following roles:
+        <ul><li>Cloud Security Team </li></ul></p>
+  </div>
+</div>
 
-    <!-- Add your CSS links or styles here -->
-    <link rel="stylesheet" href="styles.css">
+## Page Contents
+1. [Status](#service-usage-status)
+2. [Summary](#service-summary)
+3. [Features](#service-features)
+4. [Depiction](#service-depiction)
+5. [Out of Scope](#out-of-scope)
+6. [Data Classification](#data-classification)
+7. [Approved Regions](#approved-regions)
+8. [Service Documentation](#service-documentation)
+9. [Associated Services](#associated-services)
+10. [Associated Projects](#associated-projects)
+11. [Control Framework](#control-framework)
+12. [Deviations](#deviations)
+----
 
-    <!-- Add any additional head elements (meta tags, scripts, etc.) as needed -->
+# Configuration Overview
 
-</head>
+The following section provides an overview of the Cloud Security Configuration Baseline document.
 
-<body>
+## Configuration scope
 
-    <header>
-        <h1>Your Website Header</h1>
-        <!-- Add your navigation bar or any other header content here -->
-        <nav>
-            <ul>
-                <li><a href="/google/alloy_db.md">Page 1</a></li>
-                <li><a href="page2.html">Page 2</a></li>
-                <!-- Add more navigation links as needed -->
-            </ul>
-        </nav>
-    </header>
+The scope of this configuration baseline is guided by its associated ASR and is limited to the following: 
+- Security configuration guidance when developing with the cloud-service,
+- Security architecture requirements and issues inherent to the use of the cloud-service in the NAB environment as set out in the service ASR
 
-    <main>
-        <!-- This is where the content of your individual pages will go -->
-        <!-- The content will be replaced by the content of each sublinked page -->
-    </main>
 
-    <footer>
-        <!-- Add your footer content here -->
-        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
-    </footer>
+This configuration baseline explicitly excludes the following:
+- Use of the cloud service outside of architecturally defined use-cases or patterns 
+- Architectural endorsement of the cloud-service.
 
-    <!-- Add your JavaScript links or scripts here -->
+## Document Map
 
-</body>
+The Cloud Security Configuration Baseline is information that provides context and alignment for the Cloud Security Configuration Guidance.
+![document_map](/client_information/nab/document-map.png)
 
-</html>
+## Information References
+
+The document should contain Security Configuration Items (SCI) that assist in meeting the objectives of the ASR for the associated cloud service.
+<table>
+    <tr style="background-color:#c20000;">
+        <th style="color:white;">#</th>
+        <th style="color:white;">Column Name</th>
+        <th style="color:white;">Description</th>
+    </tr><tr>
+      <td>1</td>
+      <td>ASR ID</td>
+      <td>ID of the Architectural Security Requirement</td>
+  </tr>
+    <tr>
+        <td>2</td>
+        <td>ASR Title</td>
+        <td>Title of the Architectural Security Requirement</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>SCI ID</td>
+      <td>Unique SCI ID to allow easy identification of both SCI and related ASR</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>SCI Description</td>
+      <td>Detailed description of configuration item</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Applicability (Y/N)</td>
+        <td>If the security requirement is applicable to the particular cloud service or not</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Criticality</td>
+      <td>Criticality is determined by <a href=\"https://confluence.dss.ext.national.com.au/x/kJZWY\">NAB's SCI Vulnerability Ratings</a>.<br/><br/>One of the below levels of criticality must be selected within a baseline document: 
+        <ul>
+          <li>Critical</li>
+          <li>High</li>
+          <li>Medium</li>
+          <li>Low</li>
+          <li>Informational</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Implementation Detail</td>
+      <td>Detail of how to implement the SCI across different teams</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Deviation (Y/N)</td>
+        <td>Notes if there is a deviation for this control. There would be a deviation if: <br/><br/>1) Fundamentally the control can't be met <br/>2) If there is no effective detection action that can be taken <br/>3) If there is no effective preventative action that can be taken. <br/><br/>If this column is marked as "Y", there <b>MUST</b> be a corresponding entry in the Deviation table in this document and the central Requirements deviation register.</td>
+    </tr>
+</table>
+
+## Inputs
+
+- The Cloud Security Architecture Assessment's architectural security requirements, see Assessment: <<(TBA)>>
+- Architecturally defined use-cases or patterns for consuming cloud services, see <<(TBA)>>
+- Cloud Service detail:
+    - Security capabilities 
+    - Technical requirements
+
+## Outputs
+
+- Security Configuration Items that detail: 
+    - Control implementation detail 
+    - Assurance implementation detail
+- Control success criteria 
+
+# Use Cases
+
+- Performance at scale
+- Serverless
+- Enterprise ready
+- NoSQL
+- Support for ACID transactions
+
+
+----
+
+## Out of Scope
+
+- Any additional resources that the AWS DynamoDB may create, or interact with (as these resources require their own service certifications) eg Kinesis::Stream, KMS::Key, etc.
+- Public access
+- DynamoDB Accelerator (DAX)
+- DynamoDB Streams
+- DynamoDB <b>MUST NOT</b> be used as a system of record or to hold regulated data
+
+
+----
+
+# Cloud-Service Description
+
+### Service Summary
+
+Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling. DynamoDB also offers encryption at rest, which eliminates the operational burden and complexity involved in protecting sensitive data.
+
+----
+
+
+
+
+## Documentation
+
+Below are links for how to operate the service:
+- [User Guides](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+- [Security Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security.html)
+- [AWS DynamoDB API Reference](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations_Amazon_DynamoDB.html)
+- [AWS DynamoDB Developer Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithDynamo.html)
+- [AWS DynamoDB API Overview](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html)
+
+
+----
+
+# Security Configuration Items
+
+<table>
+    <tr style="background-color:#c20000;">
+        <th style="color:white;">ASR ID</th>
+        <th style="color:white;">ASR Title</th>
+        <th style="color:white;">SCI ID</th>
+        <th style="color:white;">SCI Description</th>
+        <th style="color:white;">Applicability (Y/N)</th>
+        <th style="color:white;">Criticality</th>
+        <th style="color:white;">Implementation Detail</th>
+        <th style="color:white;">Deviation</th>
+    </tr>
+    <tr>
+       <td colspan="8">Governance & Compliance</td></tr><tr>
+        <td>GV-01</td>
+        <td>Cloud Service Enablement</td>
+        <td style="text-align:center;">AWSDDB-GV01A</td>
+        <td>During the cloud service enablement process, all cloud services are assessed and approved before they can be used in our organisation. <hr/><span style="color: green;">DynamoDB is an assessed and approved service in our organisation.</span></td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/>Service Control Policy (SCP) must prevent teams from using cloud-services that have not been endorsed for use.<hr/>
+          <b>[Detect]<br/>[Cloud Security]</b><br/>Cloud Security is notified when services outside the approved and endorsed list of cloud services is deployed or used.<hr/>
+          <b>[Guidance]<br/>[Asset Team]</b><br/>This AWS cloud service is approved for general use.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+        <td>GV-02</td>
+        <td>SOC2 Compliance</td>
+        <td style="text-align:center;">AWSDDB-GV02A</td>
+        <td>All cloud services used on the platform are SOC2 compliant to make sure that vendor controls as part of Operational Risk assessment can be met.<hr/><span style="color: green;">DynamoDB is SOC2 compliant.</span></td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/>Use Service Control Policy (SCP) to prevent teams from implementing services that have not been endorsed for usage in our organisation. SOC2 compliance:<ul><li><a href="https://aws.amazon.com/compliance/services-in-scope/">AWS SOC2 Compliant Services</a></li></ul><hr/>
+          <b>[Detect]<br/>[Cloud Security]</b><br/>Cloud Security is notified when services outside the approved and endorsed list of cloud services is deployed or used.<hr/>
+          <b>[Prevent]<br/>[Security Architecture]</b><br/>As part of the CSAA, check and ensure that each cloud service is SOC2 compliant. <br/><br/> SOC2 compliance: <ul><li><a href="https://aws.amazon.com/compliance/services-in-scope/">AWS SOC2 Compliant Services</a></li></ul><hr/>
+          <b>[Guidance]<br/>[Asset Team]</b><br/> This service is SO2 compliant. No action is required. </td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+        <td>GV-03</td>
+        <td>PCI-DSS Compliance</td>
+        <td style="text-align:center;">AWSDDB-GV03A</td>
+        <td>All cloud services used for handling payment card data on the Platform must be PCI-DSS compliant.<hr/><span style="color: green;">DynamoDB is PCI-DSS compliant.</span></td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/>For any solution which stores or processes payment card data, ensure that any cloud-service used is in-scope of the PCI-DSS compliance programme.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+        <td>GV-04</td>
+        <td>Strategic Alignment</td>
+        <td style="text-align:center;">AWSDDB-GV04A</td>
+        <td>All cloud services are assessed for their alignment to technology strategy by the Emerging Technology Architecture team via <a href="https://go/techchoices">go/techchoices</a>.<hr/><span style="color: green;">DynamoDB is strategically aligned to the <b>go/strategicservices</b> list.</span></td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/>Service Control Policy (SCP) <b>MUST</b> prevent teams from using cloud-services which are not strategically aligned.<hr/>
+          <b>[Detect]<br/>[Cloud Security]</b><br/>Cloud security <b>MUST</b> be notified when cloud-services which are not aligned to technology strategy are used.<hr/>
+          <b>[Guidance]<br/>[Asset Team]</b><br/>Ensure that the cloud-service is strategically aligned.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+        <td>CP-01</td>
+        <td>Data Sovereignty </td>
+        <td style="text-align:center;">AWSDDB-CP01A</td>
+        <td>Cloud service are restricted to ensure data is stored and processed within the authorised regions only in accordance with relevant geographical region's data sovereignty guidelines. <br/><br/> <ul><li> <a href="https://confluence.dss.ext.national.com.au/x/uC4Zh">Cloud Platform available regions information </a></li></ul><hr/><span style="color: green;">DynamoDB can be restricted to deploy within ap-southeast-2 Sydney, AU region.</span><br/><br/>Cloud Security monitors compliance to this configuration with the following policies: <span style="color: green;"><ul><li>AWSDDB-CP01A: DynamoDB deployed in authorised region</li></ul></span></td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/>Service Control Policy (SCP) <b>MUST</b> prevent the creation of resources outside of an authorised region.<span style="color: green;"><br/><br/>DynamoDB global tables <b>MUST</b> be disabled via SCP. This can be implemented by removing the <code>dynamodb::CreateGlobalTable</code> permission, either at the organisation level or from the relevant accounts</span>
+          <hr/>
+          <b>[Detect]<br/>[Cloud Security]</b><br/>Compliance policy <b>MUST</b> detect when the cloud resource has been built outside of an authorised region. <hr/>
+          <b>[Guidance]<br/>[Asset Team]</b><br/>Deploy cloud resources in the authorised regions only <a href="https://confluence.dss.ext.national.com.au/x/uC4Zh">Cloud Platform available regions information. </a></td>
+        <td>N</td>
+    </tr>
+    <tr>
+       <td colspan="8">Identity & Access Management</td></tr><tr>
+    <td>IM-01</td>
+        <td>Principle of Least Privilege & Segregation of Duties</td>
+        <td style="text-align:center;">AWSDDB-IM01A</td>
+        <td>Access rights and responsibilities are limited to the minimum necessary for individuals to perform their job functions (Principle of Least Privilege). Segregation of duties is established to prevent any single individual from having the capability to compromise critical processes or systems.
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/>Data Plane and Control Plane <b>MUST</b> be separated wherever practical.<br/><br/> Control Plane <b>MUST</b> be reserved for pre-defined provisioning roles. Cloud Security team can write a rule to detect any exception to the rules.<span style="color: green;"><br/><br/>Control Plane operations: <ul><li>Create Table</li><li>Delete Table</li><li>List Table</li><li>Update Table</li><li>Purchased Reserved Capacity Offerings</li><li>Register Scalable Target</li><li>Create Backup</li><li>Delete Backup</li><li>Restore Table from Backup</li><li>Restore Table to Point in Time</li></ul>Data Plane operations: <ul><li>Batch Get Item</li><li>Batch Write Item</li><li>Delete Item</li><li>Execute Statement</li><li>Execute Transaction</li><li>Get Item</li><li>Put Item</li><li>Query</li><li>Scan</li><li>Update Item</li></ul></span><hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Infrastructure entitlements for the service <ul><li><b>MUST</b> be implemented based on permissions </li><li><b>MUST</b> be granted based on least privilege (to a manageable level of granularity) and segregation of duties (SoD) principles.</li><li> As far as possible, Data Plane actions <b>SHOULD</b> be restricted to named resources.</li></ul><span style="color: green;"><ul><li>IAM role <b>MUST</b> be defined and users <b>MUST NOT</b> be directly granted permission on the Dynamo DB resources. </li><li>The IAM policies <b>MUST</b> be created based upon the user's role and user <b>MUST</b> assume the role.</li></ul></span>
+          </td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>IM-02</td>
+        <td>Role Based Access Control</td>
+        <td style="text-align:center;">AWSDDB-IM02A</td>
+        <td>To restrict cloud platform and resources access based on a user's role within our environment, which helps mitigate overly permissive authorisation to user's within our cloud platform.<hr/><span style="color: green;"><br/><br/>Dynamodb integrates seamlessly with IAM. There are two pre defined groups with IAM for DynamoDB AmazonDynamoDBReadOnlyAccess and AmazonDynamoDBFullAccess <br/><br/><b>Reference: </b> <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/using-identity-based-policies.html">Using identity-based policies with Amazon DynamoDB</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/>CPS apply this control to Landing Zone design to restrict cloud platform and resource access to users within our platforms.<br/><br/><hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Identity-based policies on (AWS) <b>MUST</b> be used for user access to the Cloud Service. Access <b>MUST</b> be granted to a user based on pre-defined roles. (e.g. IAM roles and Groups).<span style="color: green;"><br/><br/>Asset Team <b>MUST</b> ensure that IAM roles are defined according to principle of least privileges and SOD principles. If a role requires more granular permissions then custom roles <b>MUST</b> be created.</span>
+          </td>
+        <td>N</td>
+    </tr><td>IM-02</td>
+        <td>Role Based Access Control</td>
+        <td style="text-align:center;">AWSDDB-IM02B</td>
+        <td>Use Cloud Platform based IAM capabilities to restrict access and permissions to cloud resources.<hr/><span style="color: green;">Identity policies are to be used to allow or deny permissions to IAM roles performing DynamoDB actions. The identity policy will apply to users, groups or cross-account permissions. <br/><br/>DynamoDB supports Resource-based policies however it supports creating an Access control policy which allows provisioning of granular IAM policies. <br/><br/><b>Reference: </b> <ul><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html#security_iam_service-with-iam-roles-service">How Amazon DynamoDB works with IAM </a></li><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html#security_iam_service-with-iam-resource-based-policies">DynamoDB Resource based policies. </a></li></ul></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/><ul><li><b>MUST</b> define Resource-based policies/bindings on all supported resources in the cloud service.</li><li>If resource based policies for cloud services are defined, they <b>MUST</b> specify the IAM identities which can access the selected service resource.</li></ul></td>
+        <td>N</td>
+    </tr><td>IM-02</td>
+        <td>Role Based Access Control</td>
+        <td style="text-align:center;">AWSDDB-IM02C</td>
+        <td>If the cloud platform supports the use of Azure RBAC or AWS IAM service role (i.e custom IAM Roles + Service linked roles) for <b> service to service authentication and authorisation</b>, then make sure that the permissions are not transferred to another user or role.<hr/><span style="color: green;">Amazon DynamoDB <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html">does not use service-linked roles</a>. <br/><br/>The control objective is not relevant to the scope or context of this service. This service does not support service-linked policies or service agents.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">Medium</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><td>IM-02</td>
+        <td>Role Based Access Control</td>
+        <td style="text-align:center;">AWSDDB-IM02D</td>
+        <td>Service (OS) accounts must only be used if the native IAM doesn't support for inter-service access control.<hr/><span style="color: green;">DynamoDB does not support service accounts.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">Medium</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>IM-03</td>
+        <td>Disabling Local Authentication</td>
+        <td style="text-align:center;">AWSDDB-IM03A</td>
+        <td>Local authentication mechanisms are systematically disabled on our information systems, promoting centralised and more secure authentication methods.<hr/><span style="color: green;">DynamoDB does not use any local accounts (only CSP offered IAM)</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><td>IM-03</td>
+        <td>Disabling Local Authentication</td>
+        <td style="text-align:center;">AWSDDB-IM03B</td>
+        <td>All default cloud user accounts with default user password must be updated to comply with our user authentication and password management policies.<hr/><span style="color: green;">DynamoDB does not have any default user accounts (only CSP offered IAM)</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">Medium</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>IM-04</td>
+        <td>Secret Management</td>
+        <td style="text-align:center;">AWSDDB-IM04A</td>
+        <td>If authentication credentials or secrets (database credentials, passwords, third-party API keys, connection strings, certificate and even arbitrary text certificates) are required for service integration, the secrets are securely stored and protected via an approved secrets management tools.<hr/><span style="color: green;">Break glass, console and CLI access to DynamoDB & its resources are to be Federated using an approved solution.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/>All credentials, passwords, third-party API keys, connection strings, certificates and even arbitrary text certificates <b>MUST</b> be securely stored on approved secrets management tools such as Vault or Cloud Service Provider Secrets Manager.<span style="color: green;"><br/><br/>Asset Team <b>MUST</b> ensure any secrets provided to DynamoDB are not be stored in Terraform; they <b>MUST</b> be retrieved from an approved secrets source such as Vault or Secrets Manager.<br/><br/>DynamoDB <b>MUST NOT</b> be used to store cached copies of secrets.</span>
+          </td>
+        <td>N</td>
+    </tr><td>IM-04</td>
+        <td>Secret Management</td>
+        <td style="text-align:center;">AWSDDB-IM04B</td>
+        <td>Ensure that when secrets are generated within Infrastructure as Code (IaC), specifically in Terraform, they must not be stored in the Terraform state file to prevent unauthorised access and disclosure.
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td>In the case when secrets are generated in IaC (Terraform), the generated secrets <b>MUST NOT</b> be stored in the Terraform state file.<br/><br/>  <b>[Detect]<br/>[Cloud Platform Services (CPS)]</b><br/>Source code libraries and configuration files <b>MUST</b> be scanned regularly to ensure that they do not contain any secrets in plaintext.<hr/><b>[Detect]<br/>[Asset Team]</b><br/>Asset Team <b>MUST</b> use the following Terraform security guardrails for security Terraform remote state.<ul><li>Secrets <b>MUST</b> be stored on an approved Secrets Management tools such as AWS Key Vault OR Hashicorp Vault and not on Terraform Source Code.</li><li>Use Terraform remote state always.</li><li>Use Terraform sensitive flag.</li><li>Passwords stored in terraform remote state file <b>MUST</b> be encrypted at rest (eg: Storage buckets) with access govern by RBAC and logged as per Access Control policy at <a href="https://go/girp">go/girp</a>.</li><li>An IAM policy <b>MUST</b> be configured to restrict access to Terraform remote state to Asset Team administrators only.</li></ul></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>IM-05</td>
+        <td>Role Impersonation</td>
+        <td style="text-align:center;">AWSDDB-IM05A</td>
+        <td>Ensure that role impersonation capabilities are systematically disabled within the system to prevent unauthorised users or entities from assuming roles and accessing resources beyond their designated permissions.<hr/><span style="color: green;">A suitable source condition such as: <ul><li>aws:SourceArn</li><li>aws:SourceAccount</li><li>aws:SourceOrgID or</li><li>aws:SourceOrgPaths</li></ul>is to be included within the resource policy to ensure that a "confused deputy" event is not possible.<br/><br/><b>Reference: </b><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html">The confused deputy problem</a></span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+       <td colspan="8">Data Protection</td></tr><tr>
+    <td>DP-01</td>
+        <td>Data Labelling</td>
+        <td style="text-align:center;">AWSDDB-DP01A</td>
+        <td>Information is identified and recorded as per its classification so that all information handled in our cloud environment is appropriately protected at each stage of the information lifecycle.<hr/><span style="color: green;">AWS supports tagging of Amazon DynamoDB Resources. <br/><b>Reference: </b><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html">Adding tags and labels to resources</a><br/></span><br/><br/>Cloud Security monitors compliance to this configuration with the following policies:<span style="color: green;"> <ul><li>AWSDDB-DP01A: DynamoDB resources are tagged with mandatory tags</li></ul></span>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Informational</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/>Make sure to detect when resources are not tagged.<br/><br/><hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Asset Team <b>MUST</b> ensure the mandatory tags documented at <a href="https://go/cloudtagging">go/cloudtagging</a>  are applied for all cloud service instances.</td>
+        <td>Y</td>
+    </tr><tr>
+      <tr>
+    <td>DP-02</td>
+        <td>Data at Rest Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP02A</td>
+        <td>Our data confidentiality and integrity is adequately secured at rest via approved cryptographic methods within cloud services. Data at rest encryption must be enabled to protect data stored in all cloud services.<hr/><span style="color: green;">DynamoDB encrypts all data at rest, but there is an option to use either AWS-managed or NAB-managed encryption keys.<br/><br/>DynamoDB encryption at rest provides an additional layer of data protection by securing data in an encrypted table. This includes primary keys, local and global secondary indexes, streams, global tables & backups.</span><br/><br/>Cloud Security monitors compliance to this configuration with the following policies:<span style="color: green;"> <ul><li>AWSDDB-DP02A: DynamoDB tables are encrypted at rest.</li></ul></span>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/>Compliance policy <b>MUST</b> detect when the cloud resource has been built without leveraging a CMK.<hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Asset Team <b>MUST</b> always use AWS Managed KMS encryption keys OR Customer Managed KMS encryption keys to achieve at rest encryption on resources. <span style="color: green;"><br/><br/>When creating a DynamoBD resource (Table), a customer managed CMK <b>MUST</b> be used.<br/><br/>Asset Teams <b>MUST</b> determine/assess if additional layer encryption is required.<br/><br/>Asset Team <b>MUST</b> ensure that Data at rest encryption is turned on on DynamoDB tables by using Customer managed CMK for restricted data and above. <br/><br/><b>Reference: </b><ul><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html">Encryption at Rest</a></li><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/encryption.usagenotes.html">Encryption usage notes</a>.</li></ul></span>
+          </td>
+        <td>N</td>
+    </tr><td>DP-02</td>
+        <td>Data at Rest Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP02B</td>
+        <td>Transparent Data Encryption (TDE) is used for databases and AES-256 encryption (or an approved encryption protocol) is used for storage. <hr/><span style="color: green;">TDE is not supported for DynamoDB.<br/><br/> Amazon DynamoDB encryption at rest encrypts data using 256-bit Advanced Encryption Standard (AES-256). DynamoDB also supports KMS, which allows the use of either AWS or customer managed keys.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li><b>MUST</b> enable TDE encryption for databases where available</li><li><b>MUST</b> use AES-256 encryption (or an approved encryption protocol) for other storage services (e.g. S3 Storage). Refer DP02.A for guidance.</li></ul></td>
+        <td>N</td>
+    </tr><td>DP-02</td>
+        <td>Data at Rest Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP02C</td>
+        <td>To fulfil regulatory requirements such as PCI-DSS by applying tokenisation to protect the individual data field.<hr/><span style="color: green;">DynamoDB <b>SHOULD NOT</b> be used to store or process credit-card data; if credit-card data is stored or processed within DynamoDB, an exemption <b>MUST</b> first be sought and granted by Security Governance.<br/><br/>Client-side encryption can be considered by asset teams based on their data classification requirements. This can be done using AWS Database Encryption SDK.<br/><br/>Tokenization is an application-level implementation concern and can be implemented by application before storing the data in the DynamoDB. DynamoDB in and of itself cannot tokenise the data.<br/><br/><b>Reference: </b><a href="https://docs.aws.amazon.com/database-encryption-sdk/latest/devguide/dynamodb-encryption-client.html">AWS Database Encryption SDK for DynamoDB</a></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li><b>MUST</b> assess if field-level encryption (eg. using data tokenisation service) is needed for encrypting individual data fields using our customer managed keys, an approved token issuer and our key lifecycle management in order to fulfil regulatory requirements such as PCI-DSS.</li></ul></td>
+        <td>N</td>
+    </tr><td>DP-02</td>
+        <td>Data at Rest Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP02D</td>
+        <td>Protect our sensitive data storing in cloud services by adhering to the key lifecycle management policy and procedures. <hr/><span style="color: green;">Asset team to ensure that Tables are encrypted by Customer managed CMK.<br/> <br/>Asset team to ensure our relevant process and certification of KMS is followed for managing the secrets. <br/><br/>Asset Team to ensure the deployed solution is aligned with the approved design.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/>Compliance policy <b>MUST</b> detect when a KMS key does not have rotation implemented and policies attached to the key. <hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Asset Team <b>MUST</b> manage the access, rotation and destruction of Customer Managed Keys as per our Cryptography Policy Standard as within <a href="https://go/girp">go/girp</a>.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>DP-03</td>
+        <td>Data in Transit Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP03A</td>
+        <td>Data confidentiality and integrity is adequately secured in transit via approved cryptographic methods for our cloud services.<hr/><span style="color: green;">AWS requires clients to use TLS1.2 or above for connections to services, <a href="https://aws.amazon.com/blogs/security/tls-1-2-required-for-aws-endpoints/"> including DynamoDB</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/>Compliance policy <b>MUST</b> detect when Secure SSL is not enabled.<hr/><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li>Encryption in transit <b>MUST</b> be constrained for each cloud service as per our Information Security Standard for Cryptography.</li><li>TLS 1.2 or above <b>MUST</b> be used for encryption of all data in transit.</li><li>TLS ciphers <b>MUST</b> align to our cryptography standards. </li></ul></td>
+        <td>N</td>
+    </tr><td>DP-03</td>
+        <td>Data in Transit Encryption</td>
+        <td style="text-align:center;">AWSDDB-DP03B</td>
+        <td>To manage certificates within our cloud services to facilitate the secure transfer of information. Certificates must be valid and issued by an approved Certificate Authority as per our Cryptography Policy Standard as within <a href="https://go/girp">go/girp</a>.<hr/><span style="color: green;">DynamoDB uses Amazon Trust Services (ATS) Certificate Authority for endpoint certificates. This CA managed by CSP. <br/><br/><b>Reference: </b><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ats-certs.html">DynamoDB and Certificate Authority</a>.<br/><br/>DynamoDB also supports KMS encryption, which can use Customer managed keys.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/>Certificates <b>MUST</b> be valid and issued by an approved Certificate Authority as per our Cryptography Policy Standard as within <a href="https://go/girp">go/girp</a>.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>DP-04</td>
+        <td>Deletion Prevention</td>
+        <td style="text-align:center;">AWSDDB-DP04A</td>
+        <td>Configuration control to prevent accidental deletion and recoverable in case of deletion.<hr/><span style="color: green;">Point-in-time recovery can protect DynamoDB tables from accidental write or delete operations. <br/><br/><b>Reference: </b><a href=https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html>Point-in-time recovery for DynamoDB</a>.</span><br/><br/>Cloud Security monitors compliance to this configuration with the following policies:<span style="color: green;"> <ul><li>AWSDDB-DP04A: DynamoDB point in time recovery is enabled.</li><li>AWSDDB-DP04A1: DynamoDB deletion prevention is enabled.</li></ul></span>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/><ul><li>Where possible, Cloud Service instances <b>MUST</b> be protected from accidental or malicious deletion.</li><li>The capability <b>MUST</b> exist to recover keys/secrets/certificates in case of accidental or malicious deletion.</li></ul><hr/><b>[Detect]<br/>[Cloud Security]</b><br/>The AWS config rules <a href=https://docs.aws.amazon.com/securityhub/latest/userguide/dynamodb-controls.html> dynamodb-pitr-enabled </a> and <a href=https://docs.aws.amazon.com/securityhub/latest/userguide/dynamodb-controls.html>dynamodb-table-deletion-protection-enabled</a> can be used to validate compliance to these.<hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Point-in-time recovery <b>MUST</b> be enabled on DynamoDB tables for production environments. <br/><br/>Deletion prevention <b>MUST</b> be enabled on DynamoDB tables for production environments. </td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>DP-05</td>
+        <td>Data Exfiltration</td>
+        <td style="text-align:center;">AWSDDB-DP05A</td>
+        <td>Data exfiltration must be prevented.  Any configuration which allows copy or replication of data to external boundary must be disabled.<hr/><span style="color: green;">DynamoDB <b>MUST NOT</b> allow data exfiltration.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>DT-01</td>
+        <td>Data Disposal Logging</td>
+        <td style="text-align:center;">AWSDDB-DT01A</td>
+        <td>Establish and maintain a robust data disposal logging mechanism to systematically record and monitor the secure destruction or deletion of resource and sensitive information.<hr/><span style="color: green;">DynamoDB is not to be used as a system of record, so this control does not apply.<br/><br/><b>Reference: </b> <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html">Logging DynamoDB operations</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>DD-01</td>
+        <td>Backup & Restore</td>
+        <td style="text-align:center;">AWSDDB-DD01A</td>
+        <td>Cloud data is retrieved and restored in the event of an incident or disaster to aid in the recovery critical processes and services.<hr/><span style="color: green;">Data retention to be configured in-line with our data retention policy. <br/><br/>Asset teams to assess the backup requirements and ensure that backup retention periods are in compliance with any regulatory/ business requirements. DynamoDB has an on-demand backup capability to create full backups of your tables for long-term retention and archiving for regulatory compliance needs.  <br/><br/><b>Reference: </b><ul><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">On-Demand backup and restore for DynamoDB</a></li><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/backuprestore_HowItWorks.html">Using DynamoDB backup and restore</a></li></ul><br/><font color="red">TODO clarify whether NAB's enterprise backup/restore system supports DynamoDB. If not, we have a problem - use of DynamoDB snapshots for backup/restore would require the use of DynamoDB streams, but DynamoDB streams are not endorsed. Need input from security architects here...</font></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li><b>MUST</b> ensure Backups / Snapshots are enabled in line with the Asset Team's RPO/DRP and monitored for backup or restoration failures in line with their Backup Definition Document. Unless endorsed by the Asset Team's Security Team.</li><li> Snapshots <b>MUST</b> only be restored in the same environment.</li></ul></td>
+        <td>N</td>
+    </tr><tr>
+       <td colspan="8">Network Security</td></tr><tr>
+    <td>NS-01</td>
+        <td>Disabling Public Access</td>
+        <td style="text-align:center;">AWSDDB-NS01A</td>
+        <td>Deny internet inbound access wherever it is possible.<hr/><span style="color: green;">Additionally the following policies to be configured to limit the access: <ul><li>VPC endpoint policies: To control and limit API access to the DynamoDB table.</li><li>IAM policies: To enforce that all access to the DynamoDB table is via the specified VPC endpoint and therefore denying the public access.</li><li>Block public access via resource based policies for DynamoDB</li></ul> <br/> <b>Reference: </b><ul><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html">Using Amazon VPC endpoints to access DynamoDB</a></li><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/rbac-bpa-rbp.html">Blocking public access within resource based policies - DynamoDB</a></li></ul></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/>Asset teams <b>MUST</b> use a VPC endpoint for DynamoDB to limit access from only the VPC.</td>
+        <td>Y</td>
+    </tr><tr>
+      <tr>
+    <td>NS-02</td>
+        <td>Network Access</td>
+        <td style="text-align:center;">AWSDDB-NS02A</td>
+        <td>The Internet-facing services must have built-in capability or must be behind network boundary protection where applicable to protect system components on internal networks from being directly exposed to internet.<hr/><span style="color: green;">DynamoDB Tables do not run inside a VPC, however allowing only private access from VPCs can be achieved via NS01A. </span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><td>NS-02</td>
+        <td>Network Access</td>
+        <td style="text-align:center;">AWSDDB-NS02B</td>
+        <td>Implement service configuration controls to protect against Distributed Denial of Service (DDoS) attacks against capacity and/or bandwidth as well as Application attacks.<hr/><span style="color: green;">DDoS protection is managed by CSP for DynamoDB. (All AWS customers benefit from the automatic protections of AWS Shield Standard)</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><td>NS-02</td>
+        <td>Network Access</td>
+        <td style="text-align:center;">AWSDDB-NS02C</td>
+        <td>Network access to the cloud service must be restricted per the principle of least privilege.<hr/><span style="color: green;">Network ACLs and security groups to be applied to DynamoDB VPC endpoints. <br/><br/>Asset team to ensure that VPC endpoint policies and IAM policies are configured to block the access to DynamoDB unless explicitly specified. See NS01A. <br/> <br/><b>Reference: </b><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-ddb.html#edit-vpc-endpoint-policy-ddb">Gateway endpoints for Amazon DynamoDB</a></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li>Either or both of security groups and firewall rules <b>MUST</b> be used to ensure that the service and resources are segmented with required access only.</li><li>Block access by default unless explicitly authorised. Add network micro-segmentation to restrict east-west movement by applying the principle of least privilege to block access by default unless explicitly authorised.</li><li>Access <b>MUST</b> be defined on based on an appropriate combination of source & destination IP addresses and port ranges/protocols to restrict access as tightly as possible.</li><li>If security groups are used, they <b>MUST NOT</b> have default allow all (0.0.0.0/0) rules.</li><li>If firewall rules are used, they <b>MUST NOT</b> have default allow all (0.0.0.0/0) rules</li></ul></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>NS-03</td>
+        <td>Private Data Routing</td>
+        <td style="text-align:center;">AWSDDB-NS03A</td>
+        <td>Business data must be routed private. This must be achieved by integrating cloud services within virtual network (VPC/VNET).<hr/><span style="color: green;">A VPC endpoint for DynamoDB to be used<br/>Asset team to use a VPC endpoint for DynamoDB to limit access from only the VPC. Additionally the following policies to be configured to limit the access: <ul><li>VPC endpoint policies: To control and limit API access to the DynamoDB table.</li><li>IAM policies: To enforce that all access to the DynamoDB table is via the specified VPC endpoint and therefore denying the public access.</li></ul><br/><b>Reference: </b><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-ddb.html#edit-vpc-endpoint-policy-ddb">Gateway endpoints for Amazon DynamoDB</a></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Cloud Platform Services (CPS)]</b><br/>For AWS Services where feasible, APIs <b>MUST</b> be accessed via VPC endpoints.<br/><br/><hr/><b>[Guidance]<br/>[Cloud Security]</b><br/>Cloud services where feasible <b>MUST</b> be configured to use a private network endpoint with a private address only.<br/><br/></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>NS-04</td>
+        <td>Network Segmentation</td>
+        <td style="text-align:center;">AWSDDB-NS04A</td>
+        <td>Network Segmentation and security zoning are created with a defence in depth approach.<hr/><span style="color: green;">DynamoDB is a CSP managed service. Refer to the details under NS01A for more information about securing endpoints.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Cloud Platform Services (CPS)]</b><br/>Network Segmentation and security zoning are created with a defence in depth approach adhering to our NEAR standard at <a href="https://go/near">go/near</a>. </td>
+        <td>N</td>
+    </tr><tr>
+       <td colspan="8">Auditing & Logging</td></tr><tr>
+    <td>AL-01</td>
+        <td>Event Logging</td>
+        <td style="text-align:center;">AWSDDB-AL01A</td>
+        <td>Detected security events are logged and communicated to enable diagnosis, tracking and resolution.<br/><br/>All services are to have default logging and monitoring enabled (e.g. Database Activity Monitoring Control, CloudWatch,  CloudTrail and Azure Monitor) and access to these logs is to be restricted via RBAC.
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Platform Services (CPS)]</b><br/>Ingestion to SIEM from the cloud platform is to be determined by SOC via Log onboarding forums. Cloud platform audit logs (AWS CloudTrail) <b>MUST</b> be enabled to capture all service API related events.<br/><br/>Refer to <a href="https://go/secnfr">go/secnfr</a>  for more details.<hr/><b>[Guidance/Detect]<br/>[Cloud Security]</b><br/>Refer to <a href="https://go/secnfr">go/secnfr</a>  to enable the required logs for service/resource specific logs to be sent to CloudWatch logs/log sinks.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>AL-02</td>
+        <td>Alerting</td>
+        <td style="text-align:center;">AWSDDB-AL02A</td>
+        <td>Establish and maintain a comprehensive alerting system to promptly detect and notify relevant personnel of security incidents, anomalies, or potential threats within our information system. Alerts are to be configured and monitored for any indicators of compromise detected based on log analysis. Alerts are to be configured to detect when logs have failed to transmit to the SOC team.
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Platform Services (CPS)]</b><br/><b>MUST</b> enable/forward cloud logs (reference [CSP][ServiceName]-AL01A) to the endorsed SOC log ingestion solution as per the enterprise practice within <a href="https://go/girp">go/girp</a>.<hr/><b>[Guidance]<br/>[Cloud Security]</b><br/>Ensure that the cloud service is enabled within AWS GuardDuty.</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>AL-03</td>
+        <td>Incident Management</td>
+        <td style="text-align:center;">AWSDDB-AL03A</td>
+        <td>Detecting, reporting, coordination and responding to security incidents within our cloud services.<hr/><span style="color: green;">Asset Team to review DynamoDB integration with AWS CloudTrail and ensure that capability exists to monitor and detect any potential incident. <br/><br/><b>Reference: </b> <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html">Logging DynamoDB operations by using AWS CloudTrail</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Guidance]<br/>[Cloud Platform Services (CPS)]</b><br/>An appropriate incident response process <b>MUST</b> be developed for any potentially disruptive operation on the service.<br/><br/></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>RM-01</td>
+        <td>Resource Monitoring</td>
+        <td style="text-align:center;">AWSDDB-RM01A</td>
+        <td>The stability and availability of Cloud services is maintained via effective capacity management.<hr/><span style="color: green;"><ul><li>A <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/metrics-dimensions.html">list of DynamoDB metrics</a> available in CloudWatch </li><li>Examples of how to set up <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/creating-alarms.html">CloudWatch Alarms for DynamoDB</a></li><li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html">DynamoDB Service quotas</a>.</li></ul></span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Prevent]<br/>[Cloud Platform Services (CPS)]</b><br/><ul><li>Leverage to monitor service misuse or breaches against platform capacity thresholds.</li></ul></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>SA-01</td>
+        <td>Service Availability</td>
+        <td style="text-align:center;">AWSDDB-SA01A</td>
+        <td>Cloud solutions are architected and designed in line with the Cloud Availability Strategy.<hr/><span style="color: green;"><b>Reference: </b><a href="https://aws.amazon.com/dynamodb/sla/">DynamoDB SLA</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/><b>Asset Team :</b><ul><li><b>MUST</b> design their cloud service solutions with High Availability in line with RTO and RPO.</li><li><b>MUST</b>  take Cloud SLA into account when designing RTO and RPO.</li><li>If the Cloud SLA cannot fulfil the Asset Team's RTO and RPO requirements, the risk <b>MUST</b> be identified & managed in GRACE and a suitable remediation plan <b>MUST</b> be agreed and implemented.</td>
+        <td>N</td>
+    </tr><tr>
+       <td colspan="8">Configuration Management</td></tr><tr>
+    <td>CM-01</td>
+        <td>Vulnerability Scanning</td>
+        <td style="text-align:center;">AWSDDB-CM01A</td>
+        <td>Ensuring non-compliance with security configuration baselines within our cloud services are reported.<hr/><span style="color: green;">AWS Config rules can be used to identify non-compliance with configurations. <br/><br/>Refer to <a href="https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html">managed rules by AWS</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">High</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/><ul><li>Wherever possible and applicable the service <b>MUST</b> be scanned for any misconfiguration and vulnerabilities. Any adverse findings <b>MUST</b> be appropriately actioned within timeframes defined under "Threat & Vulnerability Management" within <a href="https://go/girp">go/girp</a>.</li><li> <b>MUST</b> implement a scanning and compliance assurance capability to provide detective controls for non-compliance and security misconfiguration violation discovery and reporting.</li><li><b>MUST</b> report identified issues High concerns or Critical concerns for non-compliance configurations to the appropriate risk forums.</li></ul></td>
+        <td>N</td>
+    </tr><td>CM-01</td>
+        <td>Vulnerability Scanning</td>
+        <td style="text-align:center;">AWSDDB-CM01B</td>
+        <td>SOE and container images in the cloud platform are scanned periodically to detect presence of newly discovered vulnerabilities. <hr/><span style="color: green;">DynamoDB service is managed by CSP.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><td>CM-01</td>
+        <td>Vulnerability Scanning</td>
+        <td style="text-align:center;">AWSDDB-CM01C</td>
+        <td>Vulnerabilities are identified in the build and release pipeline of CI/CD tool chain by scanning the container runtime environment, leveraging container security scanning tools.<hr/><span style="color: green;">CSP is responsible for vulnerability scanning for managed services such as DynamoDB.</span><br/>
+        </td>
+        <td style="text-align:center;">N</td>
+        <td style="text-align:center;">High</td>
+        <td> N/A</td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>CM-02</td>
+        <td>Tampering Protection</td>
+        <td style="text-align:center;">AWSDDB-CM02A</td>
+        <td>Only use an approved CI/CD pipeline or deployment of cloud service and configuration changes.
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Medium</td>
+        <td><b>[Guidance]<br/>[Asset Team]</b><br/> <b>Asset Team :</b><ul><li>Manual build and configuration changes <b>MUST</b> be prevented.</li><li>Cloud service and configuration changes <b>MUST</b> be deployed using an approved CI/CD pipeline.</li></ul></td>
+        <td>N</td>
+    </tr><tr>
+      <tr>
+    <td>CM-03</td>
+        <td>Regular Cleanup of Resources</td>
+        <td style="text-align:center;">AWSDDB-CM03A</td>
+        <td>Regular cleanup of resources based on resource-type such as database, database snapshot, unused VMs etc.<hr/><span style="color: green;">Asset teams to regularly identify unused resources in DynamoDB. <br/><br/><b>Reference: </b><a href=https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CostOptimization_UnusedResources.html>DynamoDB cost optimisation</a>.</span><br/>
+        </td>
+        <td style="text-align:center;">Y</td>
+        <td style="text-align:center;">Low</td>
+        <td><b>[Detect]<br/>[Cloud Security]</b><br/><b>MUST</b> conduct regular scanning and managed resources to identify unused resources for clean-up.<br/><br/><hr/><b>[Guidance]<br/>[Asset Team]</b><br/>Asset Team <b>MUST</b> clean up unused resources at a regular cadence.</td>
+        <td>N</td>
+    </tr>
+</table>
+
+----
+
+## Deviations
+The Cloud Platform Team and Asset Team must review these residual Security Control Deviations and ensure that the mitigating controls included in the tables are considered or implemented as a part of their formal Risk assessment of the service's usage. Asset Team must also define additional controls to cater to their asset's risk appetite if the controls listed are considered inadequate.
+
+----
+
+
+<table>
+  <tr style="background-color:#c20000;">
+      <th style="color:white;">Deviation Category</th>
+      <th style="color:white;">SCI ID</th>
+      <th style="color:white;">Deviation ID</th>
+      <th style="color:white;">Deviation Description</th>
+      <th style="color:white;">Mitigation</th>
+      <th style="color:white;">Grace ID</th>
+  </tr>
+  <tr>
+      <td>Governance & Compliance</td>
+      <td>AWSDDB-GV03A, GV04A</td>
+      <td>Deviation01</td>
+      <td>Lack of either detect or prevent controls but have only guidance. It means that there are no effective control in place to consistently fulfill this requirements. </td>
+      <td>Refer to the <a href="https://confluence.dss.ext.national.com.au/x/iXObpw">central deviation page</a> for details.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Identity & Access Management</td>
+      <td>AWSDDB-IM02B, IM02C, IM02D</td>
+      <td>Deviation02</td>
+      <td>Lack of either detect or prevent controls but have only guidance. It means that there are no effective control in place to consistently fulfill this requirements. </td>
+      <td>Refer to the <a href="https://confluence.dss.ext.national.com.au/x/iXObpw">central deviation page</a> for details.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Data Protection</td>
+      <td>AWSDDB-DP01A</td>
+      <td>Deviation03</td>
+      <td>There is no “Data Classification” tagging within NAB's current tagging standard.<br/><br/>Presently, data classification tags are not leveraged with resources. (Only tagging available at the time of this CSAM baseline is between Production and Non-Production data.</td>
+      <td>Refer to the <a href="https://confluence.dss.ext.national.com.au/x/iXObpw">central deviation page</a> for details.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Logging & Monitoring</td>
+      <td>AWSDDB-AL03A</td>
+      <td>Deviation04</td>
+      <td>Lack of either detect or prevent controls but have only guidance. It means that there are no effective control in place to consistently fulfill this requirements. </td>
+      <td>Refer to the <a href="https://confluence.dss.ext.national.com.au/x/iXObpw">central deviation page</a> for details.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Configuration Management </td>
+      <td>AWSDDB-CM02A</td>
+      <td>Deviation05</td>
+      <td>Lack of either detect or prevent controls but have only guidance. It means that there are no effective control in place to consistently fulfill this requirements. </td>
+      <td>Refer to the <a href="https://confluence.dss.ext.national.com.au/x/iXObpw">central deviation page</a> for details.</td>
+      <td><<(TBC)>></td>
+  </tr>
+  <tr>
+      <td>Backup & Restore</td>
+      <td>AWSDDB-DD01A</td>
+      <td>Deviation06</td>
+      <td>DynamoDB by default supports a fixed backup retention period of 35 days. Any backup retention required in excess of 35 days will require additional planning.<br/><br/>Loss of oversight of this solution and/or potential misconfiguration can led to a situation where backup retention requirements are not met. <br/><br/><b>Reference: </b> <a href="https://aws.amazon.com/blogs/database/set-up-scheduled-backups-for-amazon-dynamodb-using-aws-backup">DynamoDB AWS Backups</a></td>
+      <td>Backup retention <b>MUST</b> be carefully reviewed during design phase. If backup retention requirements are longer than 35 days then the additional configuration for meeting the retention requirements <b>MUST</b> be properly assessed and documented. The ownership of this solution <b>MUST</b> be clearly defined.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Data at rest encryption in cloud services</td>
+      <td>AWSDDB-DP02B</td>
+      <td>Deviation07</td>
+      <td>DynamoDB does not support Transparent Data Encryption (TDE) and only supports data encryption using 256-bit Advanced Encryption Standard (AES-256).</td>
+      <td>DynamoDB tables <b>MUST</b> be encrypted at rest using AES-256.</td>
+      <td><<(TBC)>></td>
+  </tr><tr>
+      <td>Disabling Public Access</td>
+      <td>AWSDDB-NS01A</td>
+      <td>Deviation08</td>
+      <td>We cannot prevent access to DynamoDB from the Internet if the user has valid credentials. Detection is likely possible via the user's IP address.</td>
+      <td>DynamoDB access policies <b>MUST</b> be configured to require any access to DynamoDB to come via a VPC. <br/><br/>Where possible, date/time conditions on IAM policies <b>SHOULD</b> be defined to deny access to DynamoDB outside of users' normal working hours. <br/><br/>Where possible, STS <b>SHOULD</b> be used to impose time-limits on user access credentials to DynamoDB, and these time-limits should be configured to have as short a duration as possible while still allowing users to perform their roles<br/><br/>Asset team should consult with end users, Security Governance and CPS to ensure the above time limits are defined to both minimise unwanted disruption to users and minimise the possible time windows for security breaches to occur.</td>
+      <td><<(TBC)>></td>
+  </tr>
+</table>
+
+----
+
+# Appendix
+## Key Person & Stakeholders
+
+<table>
+    <tr style="background-color:#c20000;">
+        <th style="color:white;">Name</th>
+        <th style="color:white;">Date</th>
+        <th style="color:white;">Team</th>
+        <th style="color:white;">Notes</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+## Related Pages
+
+## Attachments
+
